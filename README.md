@@ -19,11 +19,4 @@ L'elaborato approfondisce l'uso delle tecnologie web come strumento di **Respons
 ## 🛠️ Stack Tecnologico
 * **HTML5**: Struttura semantica dell'informazione.
 * **CSS3**: Styling avanzato, animazioni e gestione del layout.
-* **Zero Framework**: Sviluppo realizzato interamente in codice nativo per massimizzare performance e sicurezza.
-
-## 📂 Struttura della Repository
-```text
-├── index.html          # Pagina principale della Landing Page
-├── assets/             # Immagini, icone e loghi aziendali
-├── css/                # Fogli di stile organizzati per moduli
-└── docs/               # Documentazione e PDF del Bilancio 2024
+* **Zero Framework**: Sviluppo realizzato interamente in codice nativo per massimizzare performance e sicurezza, seguendo le indicazioni del template di progetto

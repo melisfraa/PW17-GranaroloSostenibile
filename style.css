@@ -1,0 +1,882 @@
+/* =========================================================================
+   VARIABILI CSS (Custom Properties root)
+========================================================================= */
+:root {
+    /* Palette Colori: derivata dal Logo */
+    /* Verde scuro predominante nel logo "g" */
+    --color-primary-green: #255536;
+    /* Verde ancora più scuro per stati :hover dei bottoni */
+    --color-primary-dark: #1A3E26;
+    /* Colore sabbia della scritta "GRANAROLO" */
+    --color-logo-sand: #D2BEA1;
+
+    /* Assorbimento del blu istituzionale con il verde scuro del logo per coerenza */
+    --color-corporate-main: var(--color-primary-green);
+
+    /* Toni Acromatici per i Testi e Strutture */
+    /* Grigio scuro per i testi (massima leggibilità globale) */
+    --color-text-dark: #2F353C;
+    /* Testo chiaro su sfondi scuri */
+    --color-text-light: #FFFFFF;
+
+    /* Palette Sfondi */
+    /* Bianco per header e interno card (massimizza contrasto col verde) */
+    --color-bg-white: #FFFFFF;
+    /* Tinta sabbia leggerissima per lo sfondo generale per ammorbidire la lettura */
+    --color-bg-sand: #FBF8F4;
+    /* Verde scuro specifico per dare risalto alla sezione Download finale */
+    --color-bg-download: #1A3E26;
+
+    /* Sistema Spaziale Standardizzato (Padding e Margini costanti) */
+    --spacing-sm: 10px;
+    --spacing-md: 20px;
+    --spacing-lg: 40px;
+    --spacing-xl: 80px;
+}
+
+/* =========================================================================
+   RESET GLOBALE
+   L'Universal Selector (*) permette di ripartire da zero in qualunque browser:
+   reset de facto i margini non desiderati fornendo così un design universale.
+========================================================================= */
+* {
+    margin: 0;
+    padding: 0;
+    /* Box-sizing border-box fa in modo che border e padding rientrino 
+       nella larghezza e altezza, limitando l'overflow delle scrollbars */
+    box-sizing: border-box;
+}
+
+/* Formattazione base documento (Mobile First default) */
+html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 75px;
+    /* Compensa l'altezza dell'header sticky */
+}
+
+body {
+    /* Per un look più moderno applichiamo Montserrat sui titoli, e manteniamo Roboto sui testi lunghi */
+    font-family: 'Roboto', 'Helvetica Neue', Arial, sans-serif;
+    color: var(--color-text-dark);
+    background-color: var(--color-bg-sand);
+    line-height: 1.6;
+    /* Un'ottima interlinea migliora profondamente la leggibilità dei testi */
+}
+
+/* =========================================================================
+   TIPOGRAFIA COERENTE CON LOGO
+========================================================================= */
+/* Uso la libreria Montserrat per tutte le heading in stile blocky e audace */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.logo,
+.btn,
+.nav-cta {
+    font-family: 'Montserrat', sans-serif;
+}
+
+/* Pulizia dello stile dei collegamenti HTML (link) */
+a {
+    text-decoration: none;
+    color: inherit;
+    transition: color 0.3s ease;
+    /* Aggiunta soft transizione durante le interazioni in pagina */
+}
+
+/* =========================================================================
+   SISTEMA DI CONTENITORI (Layout)
+========================================================================= */
+.container {
+    /* Manteniamo uno spazio fluido sul mobile/tablet (90%) che ad uno 
+       specifico breakpoint orizzontale del monitor si freeza a 1200px (max-width Desktop) */
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+    /* Spostando i margini in 'auto', il browser centrerà matematicamente la 'scatola' al display */
+}
+
+/* =========================================================================
+   1. HEADER
+========================================================================= */
+.site-header {
+    background-color: var(--color-bg-white);
+    /* Sfondo bianco come impone gran parte dei loghi vettoriali per coerenza */
+    color: var(--color-primary-green);
+    /* Tinta unita istituzionale presa dal marchio */
+    padding: var(--spacing-sm) 0;
+    /* Sticky: in questo modo il menu navigherà sempre al top seguendo 
+       il visitatore e facilitando la User Experience durante la navigazione lunga */
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    /* Lo fa viaggiare "al di sopra" (asse Z) di qualsiasi altro layout della pagina */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.06);
+    /* Ombra di proiezione morbidissima verso il basso */
+}
+
+/* Uso il modulo Flexbox sull'header per centrare in ascissa e ordinata comodamente */
+.header-container {
+    display: flex;
+    justify-content: space-between;
+    /* Uno a tutto schermo a sinistra, l'altro a destra. */
+    align-items: center;
+    /* Centratura asse-Y (verticale) fra logo brand e menu nav */
+}
+
+.logo-link {
+    display: flex;
+    /* Gestione del contenitore link tramite flexbox */
+    align-items: center;
+    /* Allineamento verticale esatto per via del tag <a> */
+    transition: transform 0.3s ease;
+    /* Transizione CSS integrata per dare reattività (UX) */
+}
+
+/* Micro-interazione al passaggio del mouse sull'immagine-link per informare l'utente (Visual Feedback) */
+.logo-link:hover {
+    transform: scale(1.02);
+    /* Ingrandimento impercettibile che rende la CTA 'viva' */
+}
+
+.logo-img {
+    height: 55px;
+    /* Controllo dell'altezza fissa, vitale affinché l'header non si stiri in altezza */
+    width: auto;
+    /* Scalatura automatica e proporzionale in larghezza. Aspect-ratio intatto. */
+    display: block;
+    /* Il tag <img> nativamente genera whitespace inferiori parassiti, display block lo rende un modulo netto */
+}
+
+.main-nav ul {
+    list-style: none;
+    display: flex;
+    gap: 15px;
+    /* UX: Spaziatura fissa ottimizzata per 4 voci di menu su schermi desktop */
+    align-items: center;
+}
+
+/* Il pulsante Hamburger è nascosto su Desktop (mostrato solo su Mobile) */
+.mobile-menu-toggle,
+.mobile-menu-btn {
+    display: none;
+}
+
+/* Tutti i link di navigazione trasformati in bottoni "Apple-Style" outline */
+.main-nav a {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    display: inline-block;
+    padding: 8px 20px;
+    /* Stessi ingombri del bottone CTA */
+    border-radius: 50px;
+    /* Pill-shape (Apple style) */
+    border: 2px solid var(--color-primary-green);
+    /* Solo contorno dello stesso verde della CTA */
+    background-color: transparent;
+    /* Vuoti dentro */
+    color: var(--color-primary-green);
+    /* Testo verde come il bordo */
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    transition: all 0.3s ease;
+    /* Transizione morbida di colore per reagire dinamicamente all'utente */
+}
+
+/* Effetto scuro al passaggio del mouse sulle voci "vuote" */
+.main-nav a:hover {
+    border-color: var(--color-primary-dark);
+    /* Il contorno si scurisce dinamicamente */
+    color: var(--color-primary-dark);
+    /* Testo reagisce seguendo il contorno */
+    background-color: rgba(26, 62, 38, 0.06);
+    /* Il vuoto si vela di nero/verde simulando l'oscuramento interno ma restando trasparente */
+}
+
+/* La voce Call to Action nella Navbar */
+.nav-cta {
+    background-color: var(--color-primary-green) !important;
+    /* Forza il colore di background sempre verde (over-ride dell'outline) */
+    color: var(--color-text-light) !important;
+    /* Testo bianco */
+    border-color: var(--color-primary-green);
+    /* Stesso bordo per flow a livello */
+}
+
+.nav-cta:hover {
+    background-color: var(--color-primary-dark) !important;
+    /* Hover scuro coerente con il logo */
+    border-color: var(--color-primary-dark);
+}
+
+/* =========================================================================
+   2. HERO SECTION
+========================================================================= */
+.hero-section {
+    position: relative;
+    /* Immagine di background reale della Landing, con livello Overlay scurito al 55% per consentire al testo di essere letto nitidamente. (Requisito di Accessibilità WBAG) */
+    background: linear-gradient(rgba(0, 0, 0, 0.55), rgba(0, 0, 0, 0.65)), url('hero-bg.jpg');
+    background-size: cover;
+    /* Cover fa in modo che l'immagine scalando riempia tutto il div senza deformarsi */
+    background-position: center center;
+    /* Centriamo il focus delle mucche all'interno dello schermo */
+    background-repeat: no-repeat;
+
+    padding: 120px 0;
+    /* Padding allargato leggermente per far respirare la fotografia a tutto campo */
+    text-align: center;
+    display: flex;
+    align-items: center;
+    min-height: 60vh;
+    /* Aumentato VH al 60 per far godere maggiormente l'immagine di sfondo */
+}
+
+.hero-content {
+    max-width: 1000px;
+    /* Aumentato il limite per accomodare la lunghezza della nuova frase "DALLA TERRA ALLA TAVOLA:" tutta su una riga */
+    margin: 0 auto;
+    /* Centriamo il blocco di testo dentro il suo container flex */
+}
+
+.hero-title {
+    font-size: 2.6rem;
+    /* Scalato molto lievemente per garantire che persista sul rigo singolo della Hero-content allargata */
+    font-weight: 900;
+    /* Forte peso visivo */
+    color: var(--color-bg-white);
+    /* Testo portato obbligatoriamente a Bianco Puro sopra la foto scura */
+    margin-bottom: var(--spacing-sm);
+    line-height: 1.15;
+    text-transform: uppercase;
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+    /* L'ombreggiatura del testo lo distacca ulteriormente dai contorni complessi della fotografia di sfondo */
+}
+
+.hero-subtitle {
+    font-size: 1.4rem;
+    font-weight: 700;
+    /* Incrementato in Bold (Montserrat 700) per irrobustire massicciamente le linee del testo sulle foto */
+    color: var(--color-bg-white);
+    /* Riportato al bianco puro: la tinta sabbia tendeva a fondersi otticamente coi verdi/gialli del prato di sfondo */
+    margin-bottom: var(--spacing-md);
+    /* L'Accessibilità (WCAG) su foto complesse richiede una Shadow a 2 livelli: 
+       la prima (25px) "spegne" la luce dietro la parola, la seconda (4px) rifinisce il bordo della lettera come un out-stroke */
+    text-shadow: 0 5px 25px rgba(0, 0, 0, 0.9), 0 2px 4px rgba(0, 0, 0, 0.9);
+}
+
+.hero-text {
+    font-size: 1.15rem;
+    margin-bottom: var(--spacing-lg);
+    color: #F8F8F8;
+    /* Tonalità di grigio ultra-chiara (quasi bianca) per non stancare la vista durante la lettura di un paragrafo incassato in una foto */
+    text-shadow: 0 1px 4px rgba(0, 0, 0, 0.4);
+}
+
+/* BOTTONI C.T.A. - Gestione universale dei pulsanti */
+.btn {
+    /* MODIFICA UX: Uso inline-flex per centrare geometricamente icone SVG e testo */
+    display: inline-flex;
+    align-items: center;
+    /* Allineamento verticale perfetto */
+    justify-content: center;
+    /* Centratura orizzontale */
+    gap: 10px;
+    /* Distanza esatta tra l'icona e la scritta */
+
+    padding: 14px 32px;
+    border-radius: 50px;
+    /* Bordi molto arrotondati "Pill Shape" (Apple-Style UI) amati dal touch design */
+    font-weight: 700;
+    font-size: 1rem;
+    text-transform: uppercase;
+    transition: all 0.3s ease;
+    /* Transizione universale fluida su colore e movimento coordinato ad Hover/Click */
+    cursor: pointer;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    /* Piccola ombra alzata per suggerire clickability */
+}
+
+/* Dimensionamento dell'icona SVG di download (UI Design) */
+.icon-download {
+    width: 22px;
+    /* Larghezza fissa dell'icona */
+    height: 22px;
+    /* Altezza fissa dell'icona */
+    flex-shrink: 0;
+    /* Impedisce che l'icona si schiacci se lo schermo del telefono è troppo stretto */
+    margin-bottom: 2px;
+    /* Bilanciamento ottico per compensare le lettere maiuscole del testo */
+}
+
+.btn-primary {
+    background-color: var(--color-logo-sand);
+    color: var(--color-primary-green);
+}
+
+.btn-primary:hover {
+    background-color: var(--color-bg-white);
+    /* Transform-translate crea il micro-sbalzo o pulsazione visiva per le interazioni al mouse (UI reattiva) */
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+/* =========================================================================
+   3. SEZIONE CARD "I NOSTRI RISULTATI"
+========================================================================= */
+.results-section {
+    padding: var(--spacing-xl) 0;
+}
+
+.section-title {
+    text-align: center;
+    font-size: 2.2rem;
+    font-weight: 900;
+    color: var(--color-primary-green);
+    margin-bottom: var(--spacing-lg);
+    text-transform: uppercase;
+}
+
+/* CSS GRID per gestire la struttura tabellare delle Carte. 
+   Su Smartphone griglia genererà 1fr (1 card in fila su singola colonna), multi-colonna via Device MediaQuery. */
+.cards-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    /* Colonna singola base (approccio "Mobile First") */
+    gap: var(--spacing-lg);
+    /* Le card tra loro distanziano omogeneamente */
+    align-items: start;
+    /* Imposto start al posto di stretch in modo che le altre card non si allunghino assieme alla card espansa */
+}
+
+.card {
+    background-color: var(--color-bg-white);
+    border-radius: 12px;
+    /* Smussato moderno sui bordi */
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+    border-top: 6px solid var(--color-logo-sand);
+    /* Spring-like transition in stile Apple CoreAnimation per fluidità elevata all'ingrandimento */
+    transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1), box-shadow 0.4s cubic-bezier(0.25, 1, 0.5, 1), border-top-color 0.4s ease;
+
+    /* Indispensabili per il click-hack CSS e il bilanciamento pesi Verticali */
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    /* Ripristinato per nascondere il reveal-text che spingeva fuori dai bordi inferiori */
+}
+
+/* Hack: Checkbox nascosta (Il cuore pulsante dell'interattività in Puro CSS) */
+.card-toggle {
+    display: none;
+}
+
+/* Label fungerà da vero e proprio corpo cliccabile che copre tutta la Card. 
+   Uso flex anche qui per governarne l'estensione verticale fino ai piedi della Card che la ospita */
+.card-label {
+    padding: var(--spacing-lg);
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Feedback tattile per UX su click */
+.card-label:active {
+    background-color: #FAFAFA;
+}
+
+.card:hover {
+    /* UX Flow: far accorgere visibilmente il visitor di aver puntato al blocco testuale per concentrarlo */
+    transform: translateY(-8px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+    border-top-color: var(--color-primary-green);
+    /* Effetto hover sul micro-bordo superiore */
+}
+
+.card-icon {
+    width: 65px;
+    /* Dimensione fissa imposta all'immagine PNG/JPG per averle tutte uniformi e grandi quanto basta */
+    height: auto;
+    display: block;
+    margin: 0 auto var(--spacing-sm) auto;
+    /* Il margin left/right in "auto" centra matematicamente un tag img display:block nel contenitore genitore */
+}
+
+.card-title {
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: var(--color-primary-green);
+    text-align: center;
+    margin-bottom: var(--spacing-md);
+}
+
+.card-body {
+    display: flex;
+    flex-direction: column;
+    /* E' il "motore" del bilanciamento: spinge tutti i card-body il più in alto possibile occupando il vuoto sotto */
+    margin-bottom: auto;
+}
+
+.card-body p {
+    text-align: center;
+    color: #555555;
+    font-family: 'Roboto', sans-serif;
+    /* Rassicuriamo che il payload text sia robot non montserrat */
+}
+
+/* Dettagli Nascosti (Inizialmente crollati a Opacità e Altezza 0 per animazione dolce successiva) */
+.card-reveal {
+    max-height: 0;
+    opacity: 0;
+    overflow: hidden;
+    /* Transizione "Spring" massicciamente rallentata (vedi commento su max-height) */
+    transition: max-height 3.5s cubic-bezier(0.25, 1, 0.5, 1), opacity 1.5s cubic-bezier(0.25, 1, 0.5, 1), margin-top 1.5s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.card-caption {
+    font-size: 1.1rem;
+    font-weight: 700;
+    font-family: 'Montserrat', sans-serif;
+    color: var(--color-primary-green);
+    margin-top: 15px;
+    margin-bottom: 5px;
+    text-align: center;
+    text-transform: uppercase;
+}
+
+.card-hint {
+    display: block;
+    margin-top: 20px;
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: var(--color-logo-sand);
+    text-align: center;
+    text-transform: uppercase;
+    overflow: hidden;
+    /* FIX SOVRAPPOSIZIONE TEXT: Scomparsa calibrata per la nuova durata lunga */
+    transition: opacity 1.2s cubic-bezier(0.25, 1, 0.5, 1), max-height 1.2s cubic-bezier(0.25, 1, 0.5, 1), margin 1.2s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+/* AZIONE: Click Effettuato (La checkbox si attiva ed espande fisicamente il box sottostante) */
+.card-toggle:checked~.card-label .card-reveal {
+    max-height: 250px;
+    /* Range ridotto da 800px a 250px per svelare l'animazione CSS più lentamente */
+    opacity: 1;
+    margin-top: 20px;
+}
+
+/* AZIONE: Il testo "Clicca per espandere" scompare gradualmente nella card ingrandita */
+.card-toggle:checked~.card-label .card-hint {
+    opacity: 0;
+    max-height: 0;
+    margin: 0;
+}
+
+/* =========================================================================
+   SEZIONE TIMELINE (Evoluzione Storica)
+========================================================================= */
+/* Aggiungo un background chiaro per staccare visivamente questa sezione dalle altre */
+.timeline-section {
+    background-color: var(--color-bg-white);
+    padding: var(--spacing-xl) 0;
+}
+
+.timeline-subtitle {
+    text-align: center;
+    font-size: 1.2rem;
+    color: var(--color-text-dark);
+    margin-bottom: var(--spacing-lg);
+    opacity: 0.8;
+}
+
+/* Griglia per le tappe: 3 colonne affiancate su schermi larghi */
+.timeline-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+    position: relative;
+}
+
+/* Linea connettiva orizzontale (UX Design per unire visivamente gli anni)
+   Visibile solo su schermi desktop (sarà nascosta nel mobile) */
+.timeline-grid::before {
+    content: '';
+    position: absolute;
+    top: 40px;
+    /* Allineata al centro dei cerchi degli anni */
+    left: 10%;
+    right: 10%;
+    height: 4px;
+    background-color: var(--color-logo-sand);
+    z-index: 0;
+}
+
+.timeline-item {
+    position: relative;
+    z-index: 1;
+    /* Pone gli elementi sopra la linea connettiva */
+    text-align: center;
+    background-color: var(--color-bg-sand);
+    padding: 30px 20px;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+    transition: transform 0.3s ease;
+}
+
+.timeline-item:hover {
+    transform: translateY(-5px);
+    /* Feedback visivo al passaggio del mouse */
+}
+
+/* Stile per i "Bollini" con gli anni */
+.timeline-year {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    width: 80px;
+    height: 80px;
+    background-color: var(--color-primary-green);
+    color: var(--color-text-light);
+    border-radius: 50%;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.5rem;
+    font-weight: 900;
+    margin-bottom: 20px;
+    border: 4px solid var(--color-bg-white);
+    /* Bordo per staccare il cerchio dalla linea sottostante */
+}
+
+/* Classe speciale per evidenziare l'anno più recente */
+.timeline-year.highlight {
+    background-color: #D2BEA1;
+    /* Colore sabbia aziendale */
+    color: var(--color-primary-dark);
+    transform: scale(1.1);
+    /* Leggermente più grande per gerarchia visiva */
+}
+
+.timeline-heading {
+    font-family: 'Montserrat', sans-serif;
+    color: var(--color-primary-green);
+    font-size: 1.2rem;
+    margin-bottom: 15px;
+}
+
+/* Stile per le liste di KPI all'interno della timeline */
+.timeline-list {
+    list-style: none;
+    text-align: left;
+    font-size: 0.95rem;
+    padding: 0 10px;
+}
+
+.timeline-list li {
+    margin-bottom: 12px;
+    position: relative;
+    padding-left: 20px;
+}
+
+/* Custom bullet points (checkmark) per la lista */
+.timeline-list li::before {
+    content: '✓';
+    position: absolute;
+    left: 0;
+    color: var(--color-primary-green);
+    font-weight: bold;
+}
+
+/* =========================================================================
+   4. SEZIONE DOWNLOAD
+========================================================================= */
+.download-section {
+    background-color: var(--color-bg-download);
+    /* Verde Foresta estremo al negativo dell'occhio: focus finale del sito */
+    color: var(--color-text-light);
+    padding: 100px 0;
+    text-align: center;
+}
+
+.download-title {
+    font-size: 2.5rem;
+    font-weight: 900;
+    margin-bottom: var(--spacing-md);
+    text-transform: uppercase;
+    color: var(--color-logo-sand);
+    /* Il beige del corporate brand genera pop-out estremo sul verdone */
+}
+
+.download-text {
+    max-width: 700px;
+    margin: 0 auto var(--spacing-lg) auto;
+    font-size: 1.2rem;
+    font-family: 'Roboto', sans-serif;
+    color: #E2E8DF;
+    /* Un verde slavato verso il bianco che diminuisce affaticamento e distacco */
+}
+
+/* Pulsante CTA Download Estrema (Overrida le classi .btn generali ereditate) */
+.btn-large {
+    padding: 18px 40px;
+    border-radius: 50px;
+    /* Bordi molto arrotondati (Pill Shape) amati dal touch mobile index design */
+    font-size: 1.15rem;
+    border: 2px solid var(--color-logo-sand);
+}
+
+.btn-download {
+    background-color: var(--color-logo-sand);
+    color: var(--color-primary-green);
+    /* Usa inline-flex per centrare l'icona - Regola importata globalmente nella classe .btn, ma la forziamo per sicurezza in caso di override */
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+.btn-download:hover {
+    background-color: var(--color-bg-white);
+    /* MODIFICA UX: Il bottone principale si "illumina" riempiendosi di bianco puro per enfatizzare la Call to Action */
+    color: var(--color-primary-green);
+    /* Mantiene il testo verde scuro per il massimo contrasto sul bianco */
+    border-color: var(--color-bg-white);
+    /* Anche il bordo diventa bianco per un effetto solido */
+    transform: translateY(-3px);
+    /* Leggero sbalzo verso l'alto (effetto interattivo 3D) */
+    box-shadow: 0 8px 25px rgba(255, 255, 255, 0.3);
+    /* Effetto Glow bianco intenso per attirare l'occhio */
+}
+
+/* =========================================================================
+   SOTTO-SEZIONE: ARCHIVIO STORICO (Pulsanti Secondari)
+========================================================================= */
+.archive-section {
+    /* Crea uno stacco visivo all'interno della grande area verde, usando un bordo superiore semi-trasparente */
+    margin-top: 60px;
+    padding-top: 40px;
+    border-top: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.archive-title {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: var(--color-bg-white);
+    margin-bottom: 10px;
+}
+
+.archive-text {
+    font-size: 1rem;
+    color: #9AA696;
+    /* Verde molto desaturato per diminuire l'importanza visiva */
+    margin-bottom: 25px;
+}
+
+/* Flexbox per i bottoni dell'archivio, centrati e con spazio tra loro */
+.archive-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+    /* Fondamentale per farli andare a capo su smartphone */
+}
+
+/* Stile Pulsante Secondario ("Ghost Button" o "Outline Button") 
+   È discreto: ha solo il bordo e nessun colore di sfondo invadente, 
+   rispettando la gerarchia visiva stabilita dalla Primary CTA. */
+.btn-secondary {
+    background-color: transparent;
+    color: var(--color-logo-sand);
+    border: 2px solid rgba(210, 190, 161, 0.5);
+    /* Bordo color sabbia, ma semi-trasparente */
+    font-size: 0.95rem;
+    padding: 12px 25px;
+}
+
+/* Effetto Hover: il pulsante si "riempie" di colore per confermare l'interazione */
+.btn-secondary:hover {
+    background-color: rgba(210, 190, 161, 0.15);
+    /* Sfondo color sabbia leggerissimo */
+    border-color: var(--color-logo-sand);
+    color: var(--color-bg-white);
+    transform: translateY(-2px);
+    /* Micro-interazione (sbalzo verso l'alto) */
+}
+
+.github-link {
+    margin-top: 50px;
+    font-size: 0.9rem;
+    color: #9AA696;
+}
+
+.github-link a {
+    color: var(--color-logo-sand);
+    text-decoration: underline;
+    /* Importante per l'accessibilità visiva (capire che è hyper-text in mezzo al testo piatto) */
+}
+
+.icon-github {
+    vertical-align: -3px;
+    margin-left: 5px;
+}
+
+/* =========================================================================
+   5. FOOTER
+========================================================================= */
+.site-footer {
+    background-color: var(--color-primary-green);
+    /* Footing con colore istituzionale pesante per chiusura netta "base" HTML */
+    color: var(--color-text-light);
+    padding: var(--spacing-lg) 0;
+    font-size: 0.9rem;
+    font-family: 'Roboto', sans-serif;
+}
+
+.footer-container {
+    display: flex;
+    flex-wrap: wrap;
+    /* Permette il flow degli elementi figli al contenitore (ad es su mobile scrollano verticalmente tra loro col Wrap) */
+    justify-content: space-between;
+    align-items: center;
+    gap: var(--spacing-md);
+}
+
+.footer-info p,
+.footer-copyright p {
+    color: #E2E8DF;
+    /* Verde pastello pallido, rispetto al total white non causa astigmatismo notturno visivo */
+}
+
+/* =========================================================================
+   MEDIA QUERIES - RESPONSIVE DESIGN (Regole di scatto CSS sui vari display fisici client)
+========================================================================= */
+
+/* Dispositivi Tablet/Desktop (Minimo 768px in viewport width orizzontale) */
+@media screen and (min-width: 768px) {
+
+    /* La griglia, originariamente formata da 1 colonna in Smartphone, scatta a 3 per PC.
+       La funzione CSS 'repeat(3, 1fr)' è shorthand potente per dire "Crea tre colonne larghe ognuna una frazione identica del box." */
+    .cards-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    /* Le scale tipografiche desktop diventano immense, per riempire un grosso res display a finestra ampia */
+    .hero-title {
+        font-size: 3.5rem;
+    }
+}
+
+/* Regole restrittive in esclusiva PER SMARTPHONE (Schermi stretti, sotto scala di 768px standard tablet in su) */
+@media screen and (max-width: 767px) {
+
+    /* L'Header Container su Mobile deve mantenere Logo a sinistra e Hamburger a destra (Row), niente collasso */
+    .header-container {
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        gap: 0;
+    }
+
+    /* Il pulsante Hamburger viene svelato */
+    .mobile-menu-btn {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        width: 32px;
+        height: 22px;
+        background: transparent;
+        border: none;
+        cursor: pointer;
+    }
+
+    /* Le linee dell'hamburger */
+    .hamburger-line {
+        width: 100%;
+        height: 3px;
+        background-color: var(--color-primary-green);
+        border-radius: 5px;
+        transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1), opacity 0.3s ease;
+    }
+
+    /* Il menu a tendina scompare di default e diventa overlay assoluto alla larghezza dello schermo */
+    .main-nav .nav-list {
+        flex-direction: column;
+        width: 100%;
+        left: 0;
+        text-align: center;
+        gap: 20px;
+        position: absolute;
+        top: 100%;
+        /* Sotto all'header (essendo l'header position: sticky, fungerà da ancoraggio) */
+        background-color: var(--color-bg-white);
+        box-shadow: 0 15px 20px rgba(0, 0, 0, 0.08);
+        /* Ombra dolce sotto al menu */
+
+        /* Chiuso via CSS max-height e offrendo un fade-in */
+        max-height: 0;
+        opacity: 0;
+        overflow: hidden;
+        transition: max-height 0.5s cubic-bezier(0.25, 1, 0.5, 1), opacity 0.4s ease, padding 0.4s ease;
+        padding: 0 20px;
+    }
+
+    /* Stato Attivo (aperto da CSS Checkbox Hack) */
+    .mobile-menu-toggle:checked~.nav-list {
+        max-height: 350px;
+        opacity: 1;
+        padding: 30px 20px;
+    }
+
+    /* Animazione a X per l'Hamburger quando attivo */
+    .mobile-menu-toggle:checked~.mobile-menu-btn .hamburger-line:nth-child(1) {
+        transform: translateY(9.5px) rotate(45deg);
+    }
+
+    .mobile-menu-toggle:checked~.mobile-menu-btn .hamburger-line:nth-child(2) {
+        opacity: 0;
+    }
+
+    .mobile-menu-toggle:checked~.mobile-menu-btn .hamburger-line:nth-child(3) {
+        transform: translateY(-9.5px) rotate(-45deg);
+    }
+
+    /* Prevenzione layout breaking: evitiamo titoli text-overflow debordanti su schermi molto stretti Mobile */
+    .hero-title {
+        font-size: 2.2rem;
+    }
+
+    .hero-subtitle {
+        font-size: 1.2rem;
+    }
+
+    /* Su mobile trasformiamo la griglia della Timeline in una colonna singola */
+    .timeline-grid {
+        grid-template-columns: 1fr;
+    }
+
+    /* Nascondiamo la linea orizzontale che non avrebbe senso su mobile */
+    .timeline-grid::before {
+        display: none;
+    }
+
+    /* Colonazione obbligatoria dei div interni al Footer Mobile per allineare info societarie e copy rigorosamente incolonnati */
+    .footer-container {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    /* Media Query per i bottoni archivio su Mobile */
+    .archive-buttons {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .archive-buttons .btn-secondary {
+        width: 100%;
+        /* I bottoni prendono tutta la larghezza per facilitare il tocco col dito */
+        max-width: 300px;
+    }
+}

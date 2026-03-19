@@ -19,7 +19,12 @@ L'elaborato approfondisce l'uso delle tecnologie web come strumento di **Respons
 ## 🛠️ Stack Tecnologico
 * **HTML5**: Struttura semantica dell'informazione.
 * **CSS3**: Styling avanzato, animazioni e gestione del layout.
-* **Zero Framework**: Sviluppo realizzato interamente in codice nativo per massimizzare performance e sicurezza, seguendo le indicazioni del template di progetto
+* **Zero Framework**: Sviluppo realizzato interamente in codice nativo per massimizzare performance e sicurezza, seguendo le indicazioni del template di progetto.
+
+## 🌐 Sito Web / Live Demo
+
+Il progetto è online e consultabile direttamente tramite GitHub Pages al seguente link:
+[https://melisfraa.github.io/PW17-GranaroloSostenibile/](https://melisfraa.github.io/PW17-GranaroloSostenibile/)
 
 ## 📈 Sviluppi Futuri
 * **Integrazione CMS:** Collegamento dei dati a un CMS Headless per aggiornamenti dinamici dei KPI.

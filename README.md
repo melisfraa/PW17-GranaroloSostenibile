@@ -21,5 +21,9 @@ L'elaborato approfondisce l'uso delle tecnologie web come strumento di **Respons
 * **CSS3**: Styling avanzato, animazioni e gestione del layout.
 * **Zero Framework**: Sviluppo realizzato interamente in codice nativo per massimizzare performance e sicurezza, seguendo le indicazioni del template di progetto
 
+## 📈 Sviluppi Futuri
+* **Integrazione CMS:** Collegamento dei dati a un CMS Headless per aggiornamenti dinamici dei KPI.
+* **Advanced Analytics:** Inserimento di sistemi di tracciamento per monitorare i download effettivi dei report e l'engagement degli utenti.
+
 ## 📝 Autore
 Progetto realizzato da **Francesco Melis** (Matr. `0312501079`) come Project Work per il Corso di Laurea in **Informatica per le Aziende Digitali (L-31)** presso l'**Università Telematica Pegaso**.
